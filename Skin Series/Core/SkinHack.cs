@@ -66,6 +66,7 @@
                 [Champion.Orianna] = "Orianna",
                 [Champion.Rakan] = "Rakan",
                 [Champion.Camille] = "Camille"
+                //[Champion.Kayn] = "Kayn"
             };
 
             this.Chromas = new Dictionary<KeyValuePair<Champion, byte>, Dictionary<string, byte>>

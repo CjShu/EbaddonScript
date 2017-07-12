@@ -156,7 +156,8 @@
             new HeroSkinNameEntity("Winter Wonder Orianna", "普羅雪精靈"),
             new HeroSkinNameEntity("Heartseeker Orianna", "球愛獵人"),
             new HeroSkinNameEntity("Dark Star Orianna", "幽冥煞星"),
-            new HeroSkinNameEntity("Program Camille", "人工智慧")
+            new HeroSkinNameEntity("Program Camille", "人工智慧"),
+            new HeroSkinNameEntity("Soulhunter Kayn", "闇魂獵人")
         };
 
         public static string GetHeroSkinName(string skinName)
@@ -236,6 +237,7 @@
             new HeroNameEntity("Kassadin", "卡薩丁"),
             new HeroNameEntity("Katarina", "卡特蓮娜"),
             new HeroNameEntity("Kayle", "凱爾"),
+            new HeroNameEntity("Kayn", "慨影"),
             new HeroNameEntity("Kennen", "凱能"),
             new HeroNameEntity("Khazix", "卡力斯"),
             new HeroNameEntity("Kindred", "鏡爪"),
