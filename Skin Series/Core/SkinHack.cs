@@ -24,10 +24,13 @@
         public override string Name { get; } = "SkinHack";
 
         public Dictionary<string, byte> Skins { get; private set; }
+
         public Dictionary<KeyValuePair<Champion, byte>, Dictionary<string, byte>> Chromas { get; private set; }
+
         public Dictionary<Champion, string> BaseSkinNames { get; private set; }
 
         public ComboBox SkinId { get; set; }
+
         public Slider ChromaId { get; set; }
 
         public byte LoadSkinId { get; private set; }
@@ -54,7 +57,15 @@
                 [Champion.Syndra] = "Syndra",
                 [Champion.Vayne] = "Vayne",
                 [Champion.Xayah] = "Xayah",
-                [Champion.Yasuo] = "Yasuo"
+                [Champion.Yasuo] = "Yasuo",
+                [Champion.Zed] = "Zed",
+                [Champion.Katarina] = "Katarina",
+                [Champion.Amumu] = "Amumu",
+                [Champion.Maokai] = "Maokai",
+                [Champion.Riven] = "Riven",
+                [Champion.Orianna] = "Orianna",
+                [Champion.Rakan] = "Rakan",
+                [Champion.Camille] = "Camille"
             };
 
             this.Chromas = new Dictionary<KeyValuePair<Champion, byte>, Dictionary<string, byte>>
@@ -107,6 +118,56 @@
                         {"草綠", 7},
                         {"血紅", 8},
                         {"水銀", 9}
+                    }
+                },
+                {new KeyValuePair<Champion, byte>(Champion.Zed, 1), new Dictionary<string, byte>
+                    {
+                        {"基本", 1},
+                        {"淺緋", 4},
+                        {"黃金", 5},
+                        {"藍海", 6},
+                        {"暗紅", 7},
+                        {"深紫", 8},
+                        {"翠綠", 9}
+                    }
+                },
+                {new KeyValuePair<Champion, byte>(Champion.Riven, 3), new Dictionary<string, byte>
+                    {
+                        {"基本", 3},
+                        {"琥珀", 8},
+                        {"銀灰", 9},
+                        {"茶綠", 10},
+                        {"星雲", 11},
+                        {"芙蓉", 12},
+                        {"赤紅", 13},
+                        {"絳紫", 14},
+                        {"湛藍", 15}
+                    }
+                },
+                {new KeyValuePair<Champion, byte>(Champion.Amumu, 8), new Dictionary<string, byte>
+                    {
+                        {"基本", 8 },
+                        {"克雷德氣球", 9 },
+                        {"小惡摩氣球", 10 },
+                        {"露璐氣球", 11 },
+                        {"飛斯氣球", 12 },
+                        {"吶兒氣球", 13 },
+                        {"希格斯氣球", 14 },
+                        {"普羅氣球", 15},
+                        {"甜心雄氣球", 16}
+                    }
+                },
+                {new KeyValuePair<Champion, byte>(Champion.Maokai, 6), new Dictionary<string, byte>
+                    {
+                        {"基本", 6 },
+                        {"薔薇粉", 8 },
+                        {"珍珠白", 9 },
+                        {"琥珀黃", 10 },
+                        {"丹泉藍", 11 },
+                        {"寶石藍", 12 },
+                        {"愛心紅", 13 },
+                        {"橄欖綠", 14},
+                        {"石英紫", 15}
                     }
                 },
             };
@@ -186,7 +247,7 @@
 
         private void BuildChroma()
         {
-            this.ChromaId = this.SkinHackMenu.Add("ChromaId." + Player.Instance.ChampionName, new Slider("顏色濃度 : "));
+            this.ChromaId = this.SkinHackMenu.Add("ChromaId." + Player.Instance.ChampionName, new Slider("顏色 : "));
             this.ChromaId.IsVisible = false;
             this.ChromaId.OnValueChange += this.ChromaId_OnValueChange;
             this.SkinId.OnValueChange += this.SkinId_OnValueChange;
@@ -371,7 +432,7 @@
                     using (var webClient = new WebClient())
                     {
                         this.DDragonVersion = (string)JObject.Parse(webClient.DownloadString(new Uri("http://ddragon.leagueoflegends.com/realms/na.json"))).Property("dd");
-                        this.Data = webClient.DownloadString($"http://ddragon.leagueoflegends.com/cdn/{DDragonVersion}/data/en_US/champion/{ChampionName}.json");
+                        this.Data = webClient.DownloadString($"http://ddragon.leagueoflegends.com/cdn/{this.DDragonVersion}/data/en_US/champion/{this.ChampionName}.json");
                     }
 
                     var parsedObject = JObject.Parse(this.Data);
@@ -395,7 +456,7 @@
 
                 try
                 {
-                    foreach (var skin in SkinsData.SkinsInfos)
+                    foreach (var skin in this.SkinsData.SkinsInfos)
                     {
                         output[skin.SkinName.ToSkin()] = (byte)skin.SkinId;
                     }

@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Core\Boot.cs" />
     <Compile Include="Core\Common\MenuManager.cs" />
+    <Compile Include="Core\Common\MessageManager.cs" />
     <Compile Include="Core\ExtensionBase.cs" />
     <Compile Include="Core\HeroName.cs" />
     <Compile Include="Core\Interfaces\IExtension.cs" />

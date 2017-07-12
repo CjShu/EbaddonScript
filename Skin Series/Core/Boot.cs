@@ -1,18 +1,9 @@
 ﻿namespace Skin_Series.Core
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Net;
-    using System.Reflection;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
     using EloBuddy;
-    using EloBuddy.Sandbox;
     using EloBuddy.SDK;
-    using SharpDX;
     using Common;
 
-    // ReSharper disable once InconsistentNaming
     internal class Boot
     {
         public static bool MenuLoaded { get; set; }
@@ -24,6 +15,10 @@
                     {
                         MenuManager.LoadMenu();
                         MenuLoaded = true;
+
+                        MessageManager.PrintMessage(
+                            $"<b><font color=\"#C4E1FF\">{Player.Instance.ChampionName}</font></b> &#x6CE8;&#x5165;&#x6210;&#x529F; </font><font color='#AAAAFF'>by CjShu</font>");
+
                     },
                 250);
         }
