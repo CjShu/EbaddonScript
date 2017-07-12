@@ -59,33 +59,54 @@
 
             this.Chromas = new Dictionary<KeyValuePair<Champion, byte>, Dictionary<string, byte>>
             {
+                {new KeyValuePair<Champion, byte>(Champion.Ahri, 2), new Dictionary<string, byte>
+                    {
+                        {"基本", 2},
+                        {"明星藍", 8},
+                        {"亮眼粉", 9},
+                        {"閃耀黃", 10},
+                        {"治艷紅", 11},
+                        {"少時白", 12},
+                        {"奢華金", 13}
+                    }
+                },
                 {new KeyValuePair<Champion, byte>(Champion.Ezreal, 7), new Dictionary<string, byte>
                     {
-                        {"Amethyst", 7},
-                        {"Meteorite", 10},
-                        {"Obsidian", 11},
-                        {"Pearl", 12},
-                        {"Rose", 13},
-                        {"Quartz", 14},
-                        {"Ruby", 15},
-                        {"Sandstone", 16},
-                        {"Striped", 17}
+                        {"基本", 7},
+                        {"殞石", 10},
+                        {"白雪", 11},
+                        {"砂棕", 12},
+                        {"晚宴", 13},
+                        {"條紋", 14},
+                        {"艷紅", 15},
+                        {"薔薇", 16},
+                        {"鮮紫", 17}
+                    }
+                },
+                {new KeyValuePair<Champion, byte>(Champion.Yasuo, 1), new Dictionary<string, byte>
+                    {
+                        {"基本", 1},
+                        {"深海藍", 4 },
+                        {"紫晶", 5},
+                        {"碧玉", 6},
+                        {"薄荷綠", 7},
+                        {"墨黑", 8}
                     }
                 },
                 {new KeyValuePair<Champion, byte>(Champion.Caitlyn, 0), new Dictionary<string, byte>
                     {
-                        {"Default", 0},
-                        {"Pink", 7},
-                        {"Green", 8},
-                        {"Blue", 9}
+                        {"基本", 0},
+                        {"粉紅", 7},
+                        {"青綠", 8},
+                        {"寶藍", 9}
                     }
                 },
                 {new KeyValuePair<Champion, byte>(Champion.Vayne, 3), new Dictionary<string, byte>
                     {
-                        {"Default", 3},
-                        {"Green", 7},
-                        {"Red", 8},
-                        {"Silver", 9}
+                        {"基本", 3},
+                        {"草綠", 7},
+                        {"血紅", 8},
+                        {"水銀", 9}
                     }
                 },
             };
@@ -257,7 +278,7 @@
 
             var chromaIdT = dictionary.ElementAtOrDefault(chromaId).Key;
 
-            return chromaIdT != default(string) ? $"{baseSkinName} : {chromaIdT} chroma" : baseSkinName;
+            return chromaIdT != default(string) ? $"{baseSkinName} : {chromaIdT} 顏色造型" : baseSkinName;
         }
 
         private Dictionary<string, byte> GetChromaList(int id)

@@ -79,6 +79,7 @@
             new HeroSkinNameEntity("Striker Ezreal", "足球先生"),
             new HeroSkinNameEntity("Frosted Ezreal", "冰川勇者"),
             new HeroSkinNameEntity("Explorer Ezreal", "勘探專家"),
+            new HeroSkinNameEntity("Pulsefire Ezreal", "脈衝火焰"),
             new HeroSkinNameEntity("TPA Ezreal", "傻笑之王"),
             new HeroSkinNameEntity("Debonair Ezreal", "決勝賭豪"),
             new HeroSkinNameEntity("Ace of Spades Ezreal", "黑桃 Ace"),
