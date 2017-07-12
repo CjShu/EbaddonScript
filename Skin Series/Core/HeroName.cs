@@ -104,12 +104,12 @@
             new HeroSkinNameEntity("Snow Day Syndra", "霜降使者"),
             new HeroSkinNameEntity("SKT T1 Syndra", "SKT T1"),
             new HeroSkinNameEntity("Vindicator Vayne", "魔兵獵人"),
-            new HeroSkinNameEntity("Aristocrat", "吸血鬼獵人"),
-            new HeroSkinNameEntity("Dragonslayer", "弒龍獵人"),
-            new HeroSkinNameEntity("Heartseeker", "愛情獵人"),
-            new HeroSkinNameEntity("SKT T1", "SKT T1"),
-            new HeroSkinNameEntity("Arclight", "弧光獵人"),
-            new HeroSkinNameEntity("Soulstealer", "竊魂獵人"),
+            new HeroSkinNameEntity("Aristocrat Vayne", "吸血鬼獵人"),
+            new HeroSkinNameEntity("Dragonslayer Vayne", "弒龍獵人"),
+            new HeroSkinNameEntity("Heartseeker Vayne", "愛情獵人"),
+            new HeroSkinNameEntity("SKT T1 Vayne", "SKT T1"),
+            new HeroSkinNameEntity("Arclight Vayne", "弧光獵人"),
+            new HeroSkinNameEntity("Soulstealer Vayne", "竊魂獵人"),
             new HeroSkinNameEntity("Cosmic Dusk Xayah", "星河暮羽")
         };
 
