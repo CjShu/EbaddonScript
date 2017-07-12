@@ -32,7 +32,7 @@
 
                 var menuItem = SkinMenu.Add(
                     "MenuManager.SkinMenu." + source.Name,
-                    new CheckBox("Load" + source.Name, enabledByDefault));
+                    new CheckBox("啟動造型 ", enabledByDefault));
 
                 if (menuItem.CurrentValue)
                 {
