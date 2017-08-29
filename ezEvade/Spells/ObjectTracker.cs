@@ -50,11 +50,22 @@ namespace ezEvade
     {
         public static Dictionary<int, ObjectTrackerInfo> objTracker = new Dictionary<int, ObjectTrackerInfo>();
         public static int objTrackerID = 0;
+        private static bool _loaded;
 
         static ObjectTracker()
         {
-            Obj_AI_Minion.OnCreate += HiuCreate_ObjectTracker;
+            GameObject.OnCreate += HiuCreate_ObjectTracker;
             //Obj_AI_Minion.OnCreate += HiuDelete_ObjectTracker;
+            _loaded = true;
+        }
+
+        public static void HuiTrackerForceLoad()
+        {
+            if (!_loaded)
+            {
+                GameObject.OnCreate += HiuCreate_ObjectTracker;
+                _loaded = true;
+            }
         }
 
         public static void AddObjTrackerPosition(string name, Vector3 position, float timeExpires)
@@ -74,7 +85,7 @@ namespace ezEvade
             {
                 var minion = obj as Obj_AI_Minion;
 
-                if (minion.CharData.BaseSkinName.Contains("testcube"))
+                if (minion.CharData.BaseSkinName.ToLower().Contains("testcube"))
                 {
                     ObjectTracker.objTracker.Add(obj.NetworkId, new ObjectTrackerInfo(obj, "hiu"));
                     DelayAction.Add(250, () => ObjectTracker.objTracker.Remove(obj.NetworkId));

@@ -20,6 +20,26 @@ namespace ezEvade
 
         }
 
+        public static bool CheckTeam(this Obj_AI_Base unit)
+        {
+            return unit.Team != myHero.Team || Evade.devModeOn;
+        }
+
+        public static bool CheckTeam(this GameObject unit)
+        {
+            return unit.Team != myHero.Team || Evade.devModeOn;
+        }
+
+        public static string EmitterColor()
+        {
+            return Evade.devModeOn ? "green" : "red";
+        }
+
+        public static string EmitterTeam()
+        {
+            return Evade.devModeOn ? "ally" : "enemy";
+        }
+
         public static bool isNearEnemy(this Vector2 pos, float distance, bool alreadyNear = true)
         {
             if (ObjectCache.menuCache.cache["PreventDodgingNearEnemy"].GetValue<bool>())

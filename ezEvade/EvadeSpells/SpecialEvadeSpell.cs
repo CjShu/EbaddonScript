@@ -38,6 +38,26 @@ namespace ezEvade
             }
         }
 
+        public static bool UseRappel(EvadeSpellData evadeSpell, bool process = true)
+        {
+            if (myHero.CharData.BaseSkinName != "Elise")
+            {
+                EvadeSpell.CastEvadeSpell(() => EvadeCommand.CastSpell(evadeSpell, myHero), process);
+                return true;
+            }
+
+            if (myHero.CharData.BaseSkinName == "Elise")
+            {
+                if (myHero.Spellbook.CastSpell(SpellSlot.R))
+                {
+                    myHero.Spellbook.CanUseSpell(SpellSlot.R);
+                }
+            }
+
+
+            return false;
+        }
+
         public static bool UsePounce(EvadeSpellData evadeSpell, bool process = true)
         {
             if (myHero.CharData.BaseSkinName != "Nidalee")

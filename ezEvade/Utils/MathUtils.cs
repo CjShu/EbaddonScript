@@ -27,10 +27,8 @@ namespace ezEvade
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public static Vector2 CheckLineIntersectionEx2(Vector2 a, Vector2 b, Vector2 c, Vector2 d)
@@ -44,20 +42,18 @@ namespace ezEvade
             {
                 return new Vector2(t1, t2);
             }
-            else
-            {
-                return Vector2.Zero;
-            }
+
+            return Vector2.Zero;
         }
 
         public static Vector2 RotateVector(Vector2 start, Vector2 end, float angle)
         {
-            angle = angle * ((float)(Math.PI / 180));
-            Vector2 ret = end;
-            ret.X = ((float)Math.Cos(angle) * (end.X - start.X) -
-                (float)Math.Sin(angle) * (end.Y - start.Y) + start.X);
-            ret.Y = ((float)Math.Sin(angle) * (end.X - start.X) +
-                (float)Math.Cos(angle) * (end.Y - start.Y) + start.Y);
+            angle = angle * (float)(Math.PI / 180);
+            var ret = end;
+            ret.X = (float)Math.Cos(angle) * (end.X - start.X) -
+                    (float)Math.Sin(angle) * (end.Y - start.Y) + start.X;
+            ret.Y = (float)Math.Sin(angle) * (end.X - start.X) +
+                    (float)Math.Cos(angle) * (end.Y - start.Y) + start.Y;
             return ret;
         }
 

@@ -25,6 +25,7 @@ namespace ezEvade.SpecialSpells
                 var hero = HeroManager.Enemies.FirstOrDefault(h => h.ChampionName == "Lux");
                 if (hero != null)
                 {
+                    ObjectTracker.HuiTrackerForceLoad();
                     GameObject.OnCreate += (obj, args) => OnCreateObj_LuxMaliceCannon(obj, args, hero, spellData);
                 }
             }

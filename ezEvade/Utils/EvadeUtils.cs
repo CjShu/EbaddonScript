@@ -49,7 +49,8 @@ namespace ezEvade
                     path.Add(hero.ServerPosition.To2D());
                     path.AddRange(hero.Path.Select(point => point.To2D()));
 
-                    var finalPath = EvadeUtils.CutPath(path, hero, delay);
+                    //var finalPath = EvadeUtils.CutPath(path, hero, delay);
+                    var finalPath = path.CutPath(hero, delay);
 
                     return finalPath.Last();
                 }

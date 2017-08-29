@@ -48,6 +48,7 @@ namespace ezEvade
 
         public static bool hasGameEnded = false;
         public static bool isChanneling = false;
+        public static bool devModeOn = false;
         public static Vector2 channelPosition = Vector2.Zero;
 
         public static PositionInfo lastPosInfo;
@@ -77,6 +78,8 @@ namespace ezEvade
         {
             try
             {
+                devModeOn = true;
+
                 EloBuddy.Player.OnIssueOrder += Game_OnIssueOrder;
                 Spellbook.OnCastSpell += Game_OnCastSpell;
                 Game.OnUpdate += Game_OnGameUpdate;

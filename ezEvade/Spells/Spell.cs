@@ -17,6 +17,9 @@ namespace ezEvade
         public Vector2 startPos;
         public Vector2 endPos;
         public Vector2 direction;
+        public Vector2 cnLeft;
+        public Vector2 cnRight;
+        public Vector2 cnStart;
         public float height;
         public int heroID;
         public int projectileID;
@@ -271,7 +274,8 @@ namespace ezEvade
             if (moveBuff != null && EvadeSpell.ShouldUseMovementBuff(spell))
             {
                 speed += speed * moveBuff.speedArray[ObjectManager.Player.GetSpell(moveBuff.spellKey).Level - 1] / 100;
-                delay += moveBuff.spellDelay;
+                //delay += moveBuff.spellDelay;
+                delay += (moveBuff.spellDelay > 50 ? moveBuff.spellDelay : 0) + ObjectCache.gamePing;
             }
 
             if (spell.spellType == SpellType.Line)
@@ -283,6 +287,19 @@ namespace ezEvade
             else if (spell.spellType == SpellType.Circular)
             {
                 evadeTime = 1000 * (spell.radius - heroPos.Distance(spell.endPos)) / speed;
+                spellHitTime = spell.GetSpellHitTime(heroPos);
+            }
+            else if (spell.spellType == SpellType.Cone)
+            {
+                var sides = new[]
+                                {
+                                    heroPos.ProjectOn(spell.cnStart, spell.cnLeft).SegmentPoint,
+                                    heroPos.ProjectOn(spell.cnLeft, spell.cnRight).SegmentPoint,
+                                    heroPos.ProjectOn(spell.cnRight, spell.cnStart).SegmentPoint
+                                };
+
+                var p = sides.OrderBy(x => x.Distance(x)).First();
+                evadeTime = 1000 * (spell.info.range / 2 - heroPos.Distance(p) + hero.BoundingRadius) / speed;
                 spellHitTime = spell.GetSpellHitTime(heroPos);
             }
 
@@ -348,12 +365,14 @@ namespace ezEvade
         public static Vector2 GetCurrentSpellPosition(this Spell spell, bool allowNegative = false, float delay = 0, 
             float extraDistance = 0)
         {
-            Vector2 spellPos = spell.startPos;
+            var spellPos = spell.startPos;
 
-            if (spell.spellType == SpellType.Line || spell.spellType == SpellType.Arc || 
-                spell.info.name.Contains("_exp"))
+            if (spell.info.updatePosition == false)
+                return spellPos;
+
+            if (spell.spellType == SpellType.Line || spell.spellType == SpellType.Arc)
             {
-                float spellTime = EvadeUtils.TickCount - spell.startTime - spell.info.spellDelay;
+                var spellTime = EvadeUtils.TickCount - spell.startTime - spell.info.spellDelay;
 
                 if (spell.info.projectileSpeed == float.MaxValue)
                     return spell.startPos;
@@ -363,7 +382,7 @@ namespace ezEvade
                     spellPos = spell.startPos + spell.direction * spell.info.projectileSpeed * (spellTime / 1000);
                 }
             }
-            else if (spell.spellType == SpellType.Circular && !spell.info.name.Contains("_exp"))
+            else if (spell.spellType == SpellType.Circular || spell.spellType == SpellType.Cone)
             {
                 spellPos = spell.endPos;
             }
