@@ -48,7 +48,7 @@ namespace ezEvade
 
         public static bool hasGameEnded = false;
         public static bool isChanneling = false;
-        public static bool devModeOn = false;
+        public static bool devModeOn;
         public static Vector2 channelPosition = Vector2.Zero;
 
         public static PositionInfo lastPosInfo;
